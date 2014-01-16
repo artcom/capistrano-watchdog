@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gemspec|
     gemspec.name        = "capistrano-watchdog"
     gemspec.summary     = "watchdog deployment recipes for Capistrano"
-    gemspec.description = "Ywatchdog deployment recipes for Capistrano"
+    gemspec.description = "watchdog deployment recipes for Capistrano"
     gemspec.email       = "gunnar.marten@artcom.de"
     gemspec.homepage    = "https://github.com/artcom/capistrano-watchdog"
     gemspec.authors     = ["Gunnar Marten"]
