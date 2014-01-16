@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name        = "capistrano-y60"
-    gemspec.summary     = "Y60 deployment recipes for Capistrano"
-    gemspec.description = "Y60 deployment recipes for Capistrano"
+    gemspec.name        = "capistrano-watchdog"
+    gemspec.summary     = "watchdog deployment recipes for Capistrano"
+    gemspec.description = "Ywatchdog deployment recipes for Capistrano"
     gemspec.email       = "gunnar.marten@artcom.de"
-    gemspec.homepage    = "https://github.com/artcom/capistrano-y60"
+    gemspec.homepage    = "https://github.com/artcom/capistrano-watchdog"
     gemspec.authors     = ["Gunnar Marten"]
     # Gem dependencies
     gemspec.add_dependency('capistrano', '= 2.15.5')
