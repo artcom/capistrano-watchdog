@@ -39,9 +39,22 @@ configuration.load do
     # --------------------------------------------
 
     desc "Copy watchdog"
-    task :copy_binary, :roles => :app do
-      top.upload("watchdog.tar.gz", "#{watchdog_install_dir}", :via=> :scp)
-      run "tar -C '#{watchdog_install_dir}' -xzvf '#{watchdog_install_dir}/watchdog.tar.gz'"
+    task :copy_package, :roles => :app do
+      run "mkdir -p #{watchdog_install_dir}/watchdog"
+      delete_artifact = false
+      version = fetch(:watchdog_version, "1.0.9")
+      target_platform = fetch(:watchdog_target_platform, "Linux-x86_64")
+      package = fetch(:watchdog_package, "Watchdog-#{version}-#{target_platform}.tar.gz")
+      if not File.file?(package)
+        run_locally "scp artifacts@artifacts:pro60/releases/#{package} #{package}"
+        delete_artifact = true
+      end
+      top.upload(package, "#{watchdog_install_dir}", :via=> :scp)
+      if delete_artifact
+        run_locally "rm -rf #{package}"
+      end
+      run "tar -C '#{watchdog_install_dir}/watchdog' --exclude include --strip-components 1 -xzvf '#{watchdog_install_dir}/#{package}'"
+      run "rm #{watchdog_install_dir}/#{package}"
     end
   end
 end
