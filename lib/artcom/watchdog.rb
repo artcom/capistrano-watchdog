@@ -55,6 +55,7 @@ configuration.load do
       end
       run "tar -C '#{watchdog_install_dir}/watchdog' --exclude include --strip-components 1 -xzvf '#{watchdog_install_dir}/#{package}'"
       run "rm #{watchdog_install_dir}/#{package}"
+      sudo "chown -R #{runner}:#{runner} #{deploy_to}"            
     end
   end
 end
